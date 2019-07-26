@@ -19,6 +19,9 @@ thirdFormGroup: FormGroup;
 doctor = new Doctor();
 address: any = {}
 hide= true;
+currentFileUpload:File;
+ selectedVideo:FileList;
+ mediaName:any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches)
@@ -52,6 +55,7 @@ ngOnInit() {
   });
 }
 saveDoctor() {
+  //this.uploadVideo();
   this.doctor.name = this.firstFormGroup.controls.NameCtrl.value;
   this.doctor.gender = this.firstFormGroup.controls.GenderCtrl.value;
   this.doctor.emailId = this.firstFormGroup.controls.EmailCtrl.value;
@@ -59,12 +63,13 @@ saveDoctor() {
   this.doctor.qualification = this.firstFormGroup.controls.QualificationCtrl.value;
   this.doctor.medicalLicense = this.firstFormGroup.controls.MedicalLicenseCtrl.value;
   this.doctor.password = this.firstFormGroup.controls.PasswordCtrl.value;
-  this.doctor.profileImage = this.firstFormGroup.controls.ProfilePhotoCtrl.value;
+  this.doctor.profileImage = this.mediaName;
 }
 onValChange(something) {
   this.doctor.specialization = something;
 }
 saveClinic() {
+  this.doctor.clinicName=this.thirdFormGroup.controls.ClinicNameCtrl.value;
   this.address.state = this.thirdFormGroup.controls.StateCtrl.value;
   this.address.mobile = this.thirdFormGroup.controls.MobileCtrl.value;
   this.address.city = this.thirdFormGroup.controls.CityCtrl.value;
@@ -76,4 +81,11 @@ saveClinic() {
     console.log(data);
   });
 }
+
+ selectVideo(event){
+   this.selectedVideo=event.target.files;
+   this.currentFileUpload = this.selectedVideo.item(0)
+   this.mediaName=this.currentFileUpload.name;
+   console.log(this.mediaName);
+ }
 }

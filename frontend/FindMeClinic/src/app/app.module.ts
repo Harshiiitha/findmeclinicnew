@@ -37,6 +37,11 @@ import { Popup1Component } from './popup1/popup1.component';
 import { PatientEditProfileComponent } from './patient-edit-profile/patient-edit-profile.component';
 import { AppointmentSlotBookingComponent } from './appointment-slot-booking/appointment-slot-booking.component';
 import { ConfirmbookingComponent } from './confirmbooking/confirmbooking.component';
+import { SecondcardComponent } from './secondcard/secondcard.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+
+
 
 
 const dashboardRoutes: Routes = [
@@ -124,7 +129,9 @@ children:[
     Popup1Component,
     PatientEditProfileComponent,
     AppointmentSlotBookingComponent,
-    ConfirmbookingComponent
+    ConfirmbookingComponent,
+    SecondcardComponent,
+    ConfirmationDialogComponent
    
   
   ],
@@ -150,6 +157,7 @@ children:[
    HttpClientModule,
    MDBBootstrapModule.forRoot(),
    AppRoutingModule,
+   Ng2CarouselamosModule,
 
    BrowserAnimationsModule
   
@@ -159,7 +167,8 @@ children:[
   ],
   entryComponents: [
      PopupComponent,
-    MyDialogComponent
+    MyDialogComponent,
+    ConfirmationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

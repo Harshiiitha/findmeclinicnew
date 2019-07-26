@@ -2,14 +2,9 @@
 .container
 {
     margin-top: 80px;
-   
+   margin-bottom: 65px;
 }
-.registerbackground
-{
-    background: #eff5f8;
-    margin-bottom: 10px;
 
-}
 h4{
   color: #2fd5f8;
 }
@@ -18,7 +13,6 @@ h4{
 
     background-color:#2fd5f8;
     color: white;
-   
 }
 
 h3{
@@ -27,7 +21,6 @@ h3{
     color:#2fd5f8;
 
 }
-
 
 btn-primary{
     text-align: center;
@@ -43,3 +36,7 @@ btn-primary{
     padding-left:5%;
 }
 
+.jumbotron{
+    background: url("https://static.careers360.mobi/media/article_images/2018/12/17/BITS-HD-Admission-Test.jpeg") no-repeat center top / cover;
+
+}

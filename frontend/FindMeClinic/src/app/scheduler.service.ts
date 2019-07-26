@@ -7,6 +7,9 @@ import { Scheduler } from './scheduler';
 })
 export class SchedulerService {
 
+
+
+
   constructor(private http:HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -14,6 +17,8 @@ export class SchedulerService {
 
     })
   };
+
+
 
   getSlots(emailId:String){
     return this.http.get("http://localhost:8086/api/v1/slots/"+emailId, this.httpOptions);

@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   authenticate(username,password)
   {
+    
     this.user.emailId=username;
     this.user.password=password;
 
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.details=this.getDecodedAccessToken(this.userDetails["token"]);
       if(this.details.aud=="patient")
       {
+        sessionStorage.username=username;
         this.router.navigateByUrl('/patientdashboard/'+username);
       }
       if(this.details.aud=="doctor")

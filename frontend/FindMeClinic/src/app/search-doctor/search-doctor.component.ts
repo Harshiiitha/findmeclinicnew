@@ -238,7 +238,10 @@ routingto(emailId:string)
         "overmorrowa":this.slotData1.slots.overmorrowa,
         "overmorrowe":this.slotData1.slots.overmorrowe
       
-    }
+    },
+    // skipLocationChange:true,
+   //replaceUrl:true,
+  //  queryParamsHandling:"merge"
    
    
    

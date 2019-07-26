@@ -84,8 +84,8 @@
                   <td>
                     <mat-label class="alignmentt">Profile phtoto</mat-label>
                   </td>
-                  <td> <input class="aligns" type="file" [(ngModel)]="profilePhoto" formControlName="ProfilePhotoCtrl"
-                      accept="image/*"></td>
+                  <td> <input class="aligns" type="file"  (change)="selectVideo($event)"  [(ngModel)]="profilePhoto" formControlName="ProfilePhotoCtrl"
+                    accept=".jpg,.jpeg,.gif,.png/*"></td>
                 </tr>
               </table> 
             </mat-card>

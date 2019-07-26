@@ -118,7 +118,7 @@ public class PatientServiceImpl implements PatientService{
     public void consumeJson(@Payload BookAppointment bookAppointment)
     {
         System.out.println("Consumed appointment"  +bookAppointment.toString());
-        PatientAppointment patientAppointment=new PatientAppointment(bookAppointment.getAppointmentId(),bookAppointment.getDoctor(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot());
+        PatientAppointment patientAppointment=new PatientAppointment(bookAppointment.getAppointmentId(),bookAppointment.getDoctor(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot(),bookAppointment.getKey());
         String emailId=bookAppointment.getPatient().getEmailId();
         updatePatientAppointment(patientAppointment,emailId);
 

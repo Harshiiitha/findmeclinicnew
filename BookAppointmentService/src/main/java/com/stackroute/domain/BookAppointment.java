@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -16,12 +17,13 @@ import java.util.Date;
 public class BookAppointment {
 
     @Id
-    private String Id;
+    private String id;
     private Doctor doctor;
     private Patient patient;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date appointmentDate;
-    private String appointmentId;
+    private Integer appointmentId;
     private String slot;
+    @Transient
+    private String key;
 
 }

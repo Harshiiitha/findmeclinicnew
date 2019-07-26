@@ -68,38 +68,38 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
     console.log(this.todaya + this.todaym + this.todaye + this.tomorrowm + this.tomorrowa + this.tomorrowe + this.overmorrowm + this.overmorrowa + this.overmorrowe);
 
-    if (this.todaym == 15) {
+    if (this.todaym == 12) {
       this.status1 = "true";
 
     }
 
-    if (this.todaya == 15) {
+    if (this.todaya == 12) {
       this.status2 = "true";
     }
 
-    if (this.todaye == 15) {
+    if (this.todaye == 12) {
       this.status3 = "true";
     }
 
-    if (this.tomorrowm == 15) {
+    if (this.tomorrowm == 12) {
       this.status4 = "true";
     }
 
-    if (this.tomorrowa == 15) {
+    if (this.tomorrowa == 12) {
       this.status5 = "true";
     }
 
-    if (this.tomorrowe == 15) {
+    if (this.tomorrowe == 12) {
       this.status6 = "true";
     }
 
-    if (this.overmorrowm == 15) {
+    if (this.overmorrowm == 12) {
       this.status7 = "true";
     }
-    if (this.overmorrowa == 15) {
+    if (this.overmorrowa == 12) {
       this.status8 = "true";
     }
-    if (this.overmorrowe == 15) {
+    if (this.overmorrowe == 12) {
       this.status9 = "true";
     }
 
@@ -108,7 +108,7 @@ export class AppointmentSlotBookingComponent implements OnInit {
   }
 
   clickMe1(day: string, slot: string) {
-    this.date = new Date();
+    //this.date = new Date();
     this.slot = slot;
     this.todaym =++ this.todaym;
     this.key="todaym";
@@ -119,7 +119,7 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe2(day: string, slot: string) {
-    this.date = new Date();
+    //this.date = new Date();
     this.slot = slot;
     this.todaya = ++this.todaya ;
     this.key="todaya";
@@ -127,7 +127,7 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe3(day: string, slot: string) {
-    this.date = new Date();
+    //this.date = new Date();
     this.slot = slot;
     this.todaye = ++this.todaye ;
     this.key="todaye";
@@ -135,8 +135,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe4(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 1);
+    //this.date = new Date();
+    //this.date.setDate(this.date.getDate() + 1);
     this.slot = slot;
     this.tomorrowm =++ this.tomorrowm;
     this.key="tomorrowm";
@@ -144,8 +144,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe5(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 1);
+    //this.date = new Date();
+    //this.date.setDate(this.date.getDate() + 1);
     this.slot = slot;
     this.tomorrowa = ++this.tomorrowa ;
     this.key="tomorrowa";
@@ -153,8 +153,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe6(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 1);
+   // this.date = new Date();
+    //this.date.setDate(this.date.getDate() + 1);
     this.slot = slot;
     this.tomorrowe =++ this.tomorrowe ;
     this.key="tomorrowe";
@@ -162,8 +162,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe7(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 2);
+   // this.date = new Date();
+   // this.date.setDate(this.date.getDate() + 2);
     this.slot = slot;
     this.overmorrowm = ++this.overmorrowm ;
     this.key="overmorrowm";
@@ -171,8 +171,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe8(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 2);
+    //this.date = new Date();
+    //this.date.setDate(this.date.getDate() + 2);
     this.slot = slot;
     this.overmorrowa = ++this.overmorrowa;
     this.key="overmorrowa";
@@ -180,8 +180,8 @@ export class AppointmentSlotBookingComponent implements OnInit {
 
   }
   clickMe9(day: string, slot: string) {
-    this.date = new Date();
-    this.date.setDate(this.date.getDate() + 2);
+   // this.date = new Date();
+    //this.date.setDate(this.date.getDate() + 2);
     this.slot = slot;
     this.overmorrowe = ++this.overmorrowe ;
     this.key="overmorrowe";
@@ -198,16 +198,19 @@ export class AppointmentSlotBookingComponent implements OnInit {
         "address": this.address,
         "area": this.area,
         "slot": this.slot,
-        "appointmentDate": this.date
-      }
-
+        "key":this.key,
+        "appointmentId":this.value,
+        
+      },
+     
     };
 
    
-  
+  console.log(navigationExtras);
     this.schedulerService.putSlots(this.emailId,this.key,this.value).subscribe(data1 => {
       console.log("HI "+data1);
     });
+
 
     this.route1.navigate(['/confirmBooking'], navigationExtras);
   }

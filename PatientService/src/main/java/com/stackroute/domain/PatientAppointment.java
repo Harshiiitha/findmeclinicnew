@@ -11,9 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class PatientAppointment {
 
-    private String appointmentId;
+    private Integer appointmentId;
     private Doctor doctor;
     private Date appointmentDate;
     private String slot;
+    private String key;
 
 }

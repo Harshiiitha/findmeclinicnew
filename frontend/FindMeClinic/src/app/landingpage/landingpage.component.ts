@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupComponent } from '../popup/popup.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatGridTileHeaderCssMatStyler } from '@angular/material';
 import { PopupService } from '../../app/popup.service';
 import { ActivatedRoute, Router ,NavigationExtras} from '@angular/router';
 import { Doctor } from '../doctor';
@@ -24,7 +24,7 @@ export class LandingpageComponent implements OnInit {
    public places1:any[];
    public city1:any;
    public city:any;
-   selectedArea: string = '';
+   selectedArea: string;
 
    //event handler for the select element's change event
   
@@ -95,10 +95,42 @@ export class LandingpageComponent implements OnInit {
     //  }
     //  else
     // this.displayData.getAllDoctorsByArea(place);
-    this.router.navigate(['/searchView'],
-    {queryParams: {area:this.selectedArea}
-    })
- 
+    console.log(this.selectedArea);
+    if(this.selectedArea==undefined)
+    {
+      if(this.city=="Hyderabad")
+      {
+        this.selectedArea="Madinaguda";
+      }
+      else if(this.city=="Bangalore")
+      {
+        this.selectedArea="HSR Layout";
+      }
+      else if(this.city=="Mumbai")
+      {
+        this.selectedArea="Bhandup";
+      }
+      else if(this.city=="New Delhi")
+      {
+        this.selectedArea="Ashok Nagar"
+      }
+      else if(this.city=="Vijayawada")
+      {
+        this.selectedArea="Benz circle"
+      }
+      else
+      {
+        this.selectedArea="Park town"
+      }
+    }
+
+    let navigationExtras:NavigationExtras={
+      queryParams: {area:this.selectedArea},
+      queryParamsHandling:'merge'
+    
+    }
+    this.router.navigate(['/searchView'],navigationExtras);
+    
   } 
   selectChangeHandler (event: any) {
     //update the ui
