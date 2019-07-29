@@ -32,7 +32,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="carousel1">
+<div class="carousel">
         <div class="container" style="margin-left: 650px">
                 <div class="d-flex justify-content-center h-80">
                     <div class="card text-white" style="margin-top:150px;background-color:rgba(7, 7, 7, 0.5)">
@@ -45,13 +45,28 @@
                                     <div class="row heading heading-icon" style="margin-left: 70px">
                                    
                                <div style="color: #2fd5f8"> <h4>Select Location</h4></div>
-                                <div class="butt" style="margin-left: 10%"><form action="/action_page.php">
+                                <!-- <div class="butt" style="margin-left: 10%"><form action="/action_page.php">
                                     <select name="cars" (change)="selectChangeHandler($event)" >
                                      
                                       <option *ngFor="let place1 of places" [value]=place1>{{place1}}</option>
                                     </select>
                                    
-                                  </form></div>
+                                  </form></div> -->
+
+                                  <form>
+                                    <mat-form-field>
+                                        <input type="text" [(ngModel)]="location" matInput [matAutocomplete]="auto" [formControl]="myControl"  >
+                                        <mat-autocomplete #auto="matAutocomplete" >
+                                                <!-- autoActiveFirstOption -->
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  (click)="search()">
+                                                    {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </form>
+    
+
+
                                 </div>
                                 </div><br>
                                 <div class="container">
@@ -192,6 +207,7 @@
                 </div>
             </div>
         </div><br>
+        <app-patientreviews></app-patientreviews>
         <div class="container">
             <div class="card">
                 <div class="container-fliud">

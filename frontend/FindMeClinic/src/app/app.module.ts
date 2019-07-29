@@ -42,6 +42,10 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { RegistartionDialogComponent } from './registartion-dialog/registartion-dialog.component';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import {MatAutocompleteModule, MAT_AUTOCOMPLETE_DEFAULT_OPTIONS} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
+import { PatientreviewsComponent } from './patientreviews/patientreviews.component';
+
 
 
 
@@ -135,7 +139,8 @@ children:[
     SecondcardComponent,
     ConfirmationDialogComponent,
     RegistartionDialogComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    PatientreviewsComponent
    
   
   ],
@@ -163,7 +168,10 @@ children:[
    AppRoutingModule,
    Ng2CarouselamosModule,
 
-   BrowserAnimationsModule
+   BrowserAnimationsModule,
+   MatAutocompleteModule,
+   MatChipsModule
+   
   
   
 
@@ -176,7 +184,7 @@ children:[
     RegistartionDialogComponent,
     LoginDialogComponent
   ],
-  providers: [],
+  providers: [{provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS, useValue: {autoActiveFirstOption: false}}],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })

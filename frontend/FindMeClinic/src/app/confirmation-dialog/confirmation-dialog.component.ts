@@ -20,7 +20,8 @@ export class ConfirmationDialogComponent implements OnInit {
   morning:string[];
   afternoon:string[];
   evening:string[];
-  appointmentDate1:string
+  appointmentDate1:string;
+  emailId:string;
 
   constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>)
   {
@@ -29,7 +30,9 @@ export class ConfirmationDialogComponent implements OnInit {
  
 
   ngOnInit() {
+    this.emailId=sessionStorage.getItem('username');
    this.confirm();
+   
 
 }
 

@@ -115,6 +115,8 @@ export class ConfirmbookingComponent implements OnInit {
           this.bookAppointment.id=this.id;
           sessionStorage.setItem('appointmentid',this.appointmentId+"");
           sessionStorage.setItem('key',this.key);
+          var url=location.href;
+          localStorage.setItem("url",url);
 
           this.appointment.checkPatient(this.bookAppointment.patient.emailId).subscribe(data=>
           {

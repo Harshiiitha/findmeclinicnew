@@ -76,9 +76,15 @@ findInvalidControls() {
   console.log(invalid);
   if(invalid.length==0)
   {
+
     return this.registration.savePatient(this.patient).subscribe(data =>{
-      console.log(data);
-      this.router.navigateByUrl('/login');
+      if(localStorage.hasOwnProperty('url')){
+        sessionStorage.setItem('username',this.patient.emailId);
+        window.location.href=localStorage.getItem('url');
+      }
+      else{
+     this.router.navigateByUrl('/login');
+      }
        }
      );
   }

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupComponent } from '../popup/popup.component';
-import { MatDialog, MatGridTileHeaderCssMatStyler } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { PopupService } from '../../app/popup.service';
 import { ActivatedRoute, Router ,NavigationExtras} from '@angular/router';
 import { Doctor } from '../doctor';
 import { Address } from '../address';
 import { PatientdashboardService } from '../patientdashboard.service';
 import { SchedulerService } from '../scheduler.service';
-
+import { SearchDoctorComponent } from '../search-doctor/search-doctor.component';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landingpage',
@@ -24,7 +27,11 @@ export class LandingpageComponent implements OnInit {
    public places1:any[];
    public city1:any;
    public city:any;
-   selectedArea: string;
+   selectedArea: string = '';
+   options: string[];
+  myControl=new FormControl();
+  filteredOptions: Observable<string[]>;
+  public location='';
 
    //event handler for the select element's change event
   
@@ -34,47 +41,56 @@ export class LandingpageComponent implements OnInit {
 
  
   ngOnInit() {
-   // console.log(this.popupService.places);
-  
-  // this.route.data.subscribe(params =>{
-  //   this.places = params.places;
-  //   console.log("query params:",params.places);
-   this.start();
-  // this.next();
-  
- }
- start()
- {
-   // });
-  // if(sessionStorage.getItem('popState') != 'shown')
-  // {   if(this.popupService.check) {
-     this.dialogRef = this.dialog.open(PopupComponent, {
+    this.dialogRef = this.dialog.open(PopupComponent, {
       width: '750px',
       height: '320px',
       //  disableClose: true,
       });
-      // console.log(this.dialogRef);
+   this.start();
+  // this.next();
+ }
+
+private  _filter(value:string): string[] {
+  const filterValue=value.toLowerCase();
+  var areas=JSON.parse(sessionStorage.getItem('area'));
+  console.log(areas,"filter areas");
+  console.log(this.options);
+  return areas.filter(option => option.toLowerCase().includes(filterValue)
+  );
+}
+
+
+ start()
+ {
+   
       this.dialogRef.afterClosed().subscribe(result =>{
         this.city=this.popupService.city;
+        // console.log("cities",this.city);
         // sessionStorage.setItem('city',this.popupService.city);
-        // sessionStorage.setItem('places',JSON.stringify(this.popupService.places));
-        this.places = this.popupService.places;
-        console.log("checking ",this.places, this.popupService.check);
-        
+        sessionStorage.setItem('area',JSON.stringify(this.popupService.places));
+        // console.log(JSON.parse(sessionStorage.getItem('area')),"sesionstorage");
+        // this.places = this.popupService.places;
+        // console.log("checking ",this.places, this.popupService.check);
+        this.options=this.popupService.places;
+        console.log(this.options,"options");
+        this.filteredOptions=this.myControl.valueChanges.pipe(
+          startWith(''),
+          map(value=>this._filter(value))
+        );
        });
-      
+      //  console.log(this.options,"hi")
     }
  
   
-  next()
-  {
-    console.log(sessionStorage.getItem('city'));
-        console.log(sessionStorage.getItem('places'));
-    // console.log("HII "+this.popupService.places);
-    this.city1=sessionStorage.getItem('city');
-    this.places1=JSON.parse(sessionStorage.getItem('places'));
+  // next()
+  // {
+  //   console.log(sessionStorage.getItem('city'));
+  //       console.log(sessionStorage.getItem('places'));
+  //   // console.log("HII "+this.popupService.places);
+  //   this.city1=sessionStorage.getItem('city');
+  //   this.places1=JSON.parse(sessionStorage.getItem('places'));
 
-  }
+  // }
 
     openTabbedPane(){
       this.router.navigateByUrl("/login");
@@ -95,46 +111,19 @@ export class LandingpageComponent implements OnInit {
     //  }
     //  else
     // this.displayData.getAllDoctorsByArea(place);
-    console.log(this.selectedArea);
-    if(this.selectedArea==undefined)
-    {
-      if(this.city=="Hyderabad")
-      {
-        this.selectedArea="Madinaguda";
-      }
-      else if(this.city=="Bangalore")
-      {
-        this.selectedArea="HSR Layout";
-      }
-      else if(this.city=="Mumbai")
-      {
-        this.selectedArea="Bhandup";
-      }
-      else if(this.city=="New Delhi")
-      {
-        this.selectedArea="Ashok Nagar"
-      }
-      else if(this.city=="Vijayawada")
-      {
-        this.selectedArea="Benz circle"
-      }
-      else
-      {
-        this.selectedArea="Park town"
-      }
-    }
-
-    let navigationExtras:NavigationExtras={
-      queryParams: {area:this.selectedArea},
-      queryParamsHandling:'merge'
-    
-    }
-    this.router.navigate(['/searchView'],navigationExtras);
-    
+    this.router.navigate(['/searchView'],
+    {queryParams: {area:this.selectedArea}
+    })
+ 
   } 
-  selectChangeHandler (event: any) {
+  selectChangeHandler (event: any ) {
     //update the ui
     this.selectedArea = event.target.value;
     console.log("selected"+this.selectedArea);
   }
+ search(){
+   console.log(this.location)
+   this.selectedArea=this.location;
+   console.log("selected location is ",this.selectedArea);
+ }
 }

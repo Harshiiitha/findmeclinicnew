@@ -4,7 +4,7 @@ export class Patient{
     dateOfBirth:String;
     gender:String;
     phone:String;
-    emailId:String;
+    emailId:string;
     password:String;
     role:String
 

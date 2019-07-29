@@ -14,6 +14,7 @@ export class Doctor {
     specialization:String;
     clinicName:String;
     address:Address;
+    phone:string;
     doctorAppointment:DoctorAppointment;
 
 

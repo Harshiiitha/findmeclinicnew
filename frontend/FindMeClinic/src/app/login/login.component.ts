@@ -35,17 +35,25 @@ export class LoginComponent implements OnInit {
     this.user.password=password;
 
     console.log(this.user);
-
+    sessionStorage.setItem('username',username);
     this.authentication.saveUser(this.user).subscribe(data =>{
       // alert("Valid")
       this.userDetails=data;
       //var obj = JSON.parse(this.userDetails);
       console.log(this.userDetails["token"]);
       this.details=this.getDecodedAccessToken(this.userDetails["token"]);
+  
       if(this.details.aud=="patient")
       {
-        sessionStorage.username=username;
+    
+        if(localStorage.hasOwnProperty('url')){
+        
+          window.location.href=localStorage.getItem('url');
+        }
+        else{
+     
         this.router.navigateByUrl('/patientdashboard/'+username);
+        }
       }
       if(this.details.aud=="doctor")
       {
