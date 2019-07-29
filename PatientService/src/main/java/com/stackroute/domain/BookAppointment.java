@@ -22,5 +22,6 @@ public class BookAppointment {
     private Integer appointmentId;
     private String slot;
     private String key;
+    private String appointmentTime;
 }
 

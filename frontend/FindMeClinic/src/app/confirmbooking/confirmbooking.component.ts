@@ -8,6 +8,8 @@ import { AppointmentService } from '../appointment.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material';
 import { SchedulerService } from '../scheduler.service';
+import { RegistartionDialogComponent } from '../registartion-dialog/registartion-dialog.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-confirmbooking',
@@ -31,7 +33,11 @@ export class ConfirmbookingComponent implements OnInit {
     address: any = {}
     patient=new Patient();
     key:string;
+    morning:string[];
+    afternoon:string[];
+    evening:string[];
     bookAppointment=new BookAppointment();
+    appointmentId1:number;
    
 
     constructor(private formBuilder: FormBuilder,private route:ActivatedRoute,private appointment:AppointmentService,public dialog: MatDialog,private schedulerService:SchedulerService) {
@@ -51,6 +57,9 @@ export class ConfirmbookingComponent implements OnInit {
      }
 
     ngOnInit() {
+      this.morning=["10.00 AM","10.15 AM","10.30 AM","10.45 AM","11.00 AM","11.15 AM","11.30 AM","11.45 AM","12.00 AM","12.15 AM","12.30 AM","12.45 AM"];
+  this.afternoon=["2.00 PM","2.15 PM","2.30 PM","2.45 PM","3.00 PM","3.15 PM","3.30 PM","3.45 PM","4.00 PM","4.15 PM","4.30 PM","4.45 PM"];
+  this.evening=["6.00 PM","6.15 PM","6.30 PM","6.45 PM","7.00 PM","7.15 PM","7.30 PM","7.45 PM","8.00 PM","8.15 PM","8.30 PM","8.45 PM"];
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             date: ['', Validators.required],
@@ -107,29 +116,107 @@ export class ConfirmbookingComponent implements OnInit {
           sessionStorage.setItem('appointmentid',this.appointmentId+"");
           sessionStorage.setItem('key',this.key);
 
-          
-
-          
-          console.log(this.bookAppointment);
-          
-            this.appointment.saveAppointment(this.bookAppointment).subscribe(data =>{
-            console.log(data);
-                 }
-               );
-               const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-                width: '350px',
+          this.appointment.checkPatient(this.bookAppointment.patient.emailId).subscribe(data=>
+          {
+            if(this.bookAppointment.patient.emailId==sessionStorage.getItem('username'))
+            {
+            if(data.emailId==this.bookAppointment.patient.emailId)
+            {
+              this.appointmentId1=this.bookAppointment.appointmentId;
               
-                disableClose: true,
-               
-              });
+                 if(this.key=="todaym")
+                 {
+                     
+                     this.bookAppointment.appointmentTime=this.morning[--this.appointmentId1];
+                 }
+                 else if(this.key=="todaya")
+                 {
+                  this.bookAppointment.appointmentTime=this.afternoon[--this.appointmentId1];
+                 }
+                 else  if(this.key=="todaye")
+                {
+                  this.bookAppointment.appointmentTime=this.evening[--this.appointmentId1];
+                }
+            
+               else  if(this.key=="tomorrowm")
+                 {
+                     
+                     this.bookAppointment.appointmentTime=this.morning[--this.appointmentId1];
+                 }
+                 else if(this.key=="tomorrowa")
+                 {
+                  this.bookAppointment.appointmentTime=this.afternoon[--this.appointmentId1];
+                 }
+                 else if(this.key=="tomorrowe")
+                {
+                  this.bookAppointment.appointmentTime=this.evening[--this.appointmentId1];
+                }
+            
+                 else if(this.key=="overmorrowm")
+                 {
+                     
+                     this.bookAppointment.appointmentTime=this.morning[--this.appointmentId1];
+                 }
+                 else if(this.key=="overmorrowa")
+                 {
+                  this.bookAppointment.appointmentTime=this.afternoon[--this.appointmentId1];
+                 }
+                 else 
+                {
+                  this.bookAppointment.appointmentTime=this.evening[--this.appointmentId1];
+                }
+            
           
-              dialogRef.afterClosed().subscribe(result => {
-                console.log('The dialog was closed');
-              });
+              this.appointment.saveAppointment(this.bookAppointment).subscribe(data =>{
+              console.log(data);
+                   }
+                 );
+                 const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+                  width: '350px',
+                
+                  disableClose: true,
+                 
+                });
+            
+                dialogRef.afterClosed().subscribe(result => {
+                  console.log('The dialog was closed');
+                });
+          }
         }
-        else
-        {
-          return;
+        
+        else{
+          const dialogRef = this.dialog.open(LoginDialogComponent, {
+            width: '350px',
+          
+            disableClose: true,
+           
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+          });
+          
+        }  
+          
+        },
+        error=>{
+
+          sessionStorage.setItem('name',this.bookAppointment.patient.name);
+          const dialogRef = this.dialog.open(RegistartionDialogComponent, {
+            width: '350px',
+          
+            disableClose: true,
+           
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+          });
+
         }
+      );
+          
+         
       }
-}
+    }
+  }

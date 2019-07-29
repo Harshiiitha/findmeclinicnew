@@ -40,6 +40,8 @@ import { ConfirmbookingComponent } from './confirmbooking/confirmbooking.compone
 import { SecondcardComponent } from './secondcard/secondcard.component';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { RegistartionDialogComponent } from './registartion-dialog/registartion-dialog.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 
 
@@ -131,7 +133,9 @@ children:[
     AppointmentSlotBookingComponent,
     ConfirmbookingComponent,
     SecondcardComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    RegistartionDialogComponent,
+    LoginDialogComponent
    
   
   ],
@@ -168,7 +172,9 @@ children:[
   entryComponents: [
      PopupComponent,
     MyDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    RegistartionDialogComponent,
+    LoginDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

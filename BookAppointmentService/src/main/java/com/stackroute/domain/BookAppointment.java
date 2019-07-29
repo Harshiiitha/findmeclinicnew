@@ -22,6 +22,7 @@ public class BookAppointment {
     private Patient patient;
     private Date appointmentDate;
     private Integer appointmentId;
+    private String appointmentTime;
     private String slot;
     @Transient
     private String key;

@@ -9,5 +9,5 @@ public class PatientAppointment {
     private Date appointmentDate;
     private String Slot;
     private String key;
-
+    private String appointmentTime;
 }

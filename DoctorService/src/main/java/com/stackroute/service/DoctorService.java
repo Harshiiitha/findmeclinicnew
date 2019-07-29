@@ -23,6 +23,7 @@ public interface DoctorService {
     List<Doctor> findDoctorByLocation(String area);
     void consumeJson(BookAppointment bookAppointment);
     void updateDoctorAppointments(DoctorAppointment doctorAppointment, String emailId);
+    List<DoctorAppointment> getAllAppointments(String emailId);
 
 
 }

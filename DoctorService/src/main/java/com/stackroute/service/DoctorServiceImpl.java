@@ -163,6 +163,15 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
+    public List<DoctorAppointment> getAllAppointments(String emailId)
+    {
+        Doctor doctor=doctorRepository.findById(emailId).get();
+        List<DoctorAppointment> doctorAppointmentList=doctor.getDoctorAppointmentList();
+        return  doctorAppointmentList;
+    }
+
+
+    @Override
     public String sendJson1(Doctor doctor) {
 
         kafkaTemplate1.send(topic1,doctor);
@@ -174,7 +183,7 @@ public class DoctorServiceImpl implements DoctorService {
     public void consumeJson(@Payload BookAppointment bookAppointment)
     {
         System.out.println("Consumed appointment"  +bookAppointment.toString());
-        DoctorAppointment doctorAppointment=new DoctorAppointment(bookAppointment.getAppointmentId(),bookAppointment.getPatient(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot(),bookAppointment.getKey());
+        DoctorAppointment doctorAppointment=new DoctorAppointment(bookAppointment.getAppointmentId(),bookAppointment.getPatient(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot(),bookAppointment.getKey(),bookAppointment.getAppointmentTime());
         String emailId=bookAppointment.getDoctor().getEmailId();
         updateDoctorAppointments(doctorAppointment,emailId);
 

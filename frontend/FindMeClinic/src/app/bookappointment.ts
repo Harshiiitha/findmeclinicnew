@@ -10,4 +10,5 @@ export class BookAppointment {
     slot:String;
     appointmentId:number;
     key:String;
+    appointmentTime:string;
 }

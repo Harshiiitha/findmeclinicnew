@@ -54,7 +54,7 @@ export class PopupComponent  implements OnInit  {
     this.popupService.check =false;
   }
   public mumbai() {
-    this.places =["Bhandup","Ghatkopar"," Borivali","Colaba","Kurla","Govandi"];
+    this.places =["Bhandup","Ghatkopar","Borivali","Colaba","Kurla","Govandi"];
     this.popupService.places = this.places;
     this.popupService.city="Mumbai";
     const dialogRef = this.dialog.closeAll();

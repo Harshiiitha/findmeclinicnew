@@ -14,16 +14,20 @@
              <div class="row">
 
                <div class="col">
+                 <p>Appointment Id</p>
                  <p>Doctor's Name:</p>
                  <p>Clinic's Name:</p>
-                 <p>Date and Time :</p>
+                 <p>Appointment Date :</p>
+                 <p>Appointment Time:</p>
                  <p>Address :</p>
                </div>
                <div class="col">
-                 <p>{{appointmentDetails.doctorName}}</p>
-                 <p>{{appointmentDetails.clinicName}}</p>
-                 <p>{{appointmentDetails.dateAndTime}}</p>
-                 <p>{{appointmentDetails.address}}</p>
+                 <p>{{appointmentDetails.appointmentId}}</p>
+                 <p>{{appointmentDetails.doctor.name}}</p>
+                 <p>{{appointmentDetails.doctor.clinicName}}</p>
+                 <p>{{appointmentDetails.appointmentDate}}</p>
+                 <p>{{appointmentDetails.appointmentTime}}</p>
+                 <p>{{appointmentDetails.doctor.address.address}}</p>
 
                </div>
              </div>
@@ -52,19 +56,23 @@
            <mat-card-content>
              <div class="row">
 
-               <div class="col">
-                 <p>Doctor's Name:</p>
-                 <p>Clinic's Name:</p>
-                 <p>Date and Time :</p>
-                 <p>Address :</p>
-               </div>
-               <div class="col">
-                 <p>{{appointmentDetails1.doctorName}}</p>
-                 <p>{{appointmentDetails1.clinicName}}</p>
-                 <p>{{appointmentDetails1.dateAndTime}}</p>
-                 <p>{{appointmentDetails1.address}}</p>
+              <div class="col">
+                <p>Appointment Id</p>
+                <p>Doctor's Name:</p>
+                <p>Clinic's Name:</p>
+                <p>Appointment Date :</p>
+                <p>Appointment Time:</p>
+                <p>Address :</p>
+              </div>
+              <div class="col">
+                <p>{{appointmentDetails1.appointmentId}}</p>
+                <p>{{appointmentDetails1.doctor.name}}</p>
+                <p>{{appointmentDetails1.doctor.clinicName}}</p>
+                <p>{{appointmentDetails1.appointmentDate}}</p>
+                <p>{{appointmentDetails1.appointmentTime}}</p>
+                <p>{{appointmentDetails1.doctor.address.address}}</p>
 
-               </div>
+              </div>
              </div>
            </mat-card-content>
          </mat-card><br>

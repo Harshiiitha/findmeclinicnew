@@ -17,5 +17,6 @@ public class DoctorAppointment {
     private Date appointmentDate;
     private String slot;
     private String key;
+    private String appointmentTime;
 }
 

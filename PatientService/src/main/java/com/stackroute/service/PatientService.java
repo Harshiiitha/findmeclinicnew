@@ -12,11 +12,12 @@ import java.util.List;
 public interface PatientService {
    Patient savePatient(Patient patient) throws PatientAlreadyExistsException;
    List<Patient> getPatients();
-   Patient getPatientByEmailId(String emailId);
+   Patient getPatientByEmailId(String emailId) throws PatientNotFoundException;
    Patient deletePatientById(String emailId) throws PatientNotFoundException;
    Patient updatePatient(Patient patient);
    String sendJson(Patient patient);
    void consumeJson(BookAppointment bookAppointment);
    void updatePatientAppointment(PatientAppointment patientAppointment, String emailId);
+   List<PatientAppointment> getAllAppointments(String emailId);
 
    }

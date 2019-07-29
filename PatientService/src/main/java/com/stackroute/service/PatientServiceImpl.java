@@ -51,8 +51,18 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public Patient getPatientByEmailId(String emailId) {
-        return patientRepository.findById(emailId).get();
+    public Patient getPatientByEmailId(String emailId) throws PatientNotFoundException{
+       Patient patient;
+       Optional optional=patientRepository.findById(emailId);
+       if(optional.isPresent())
+       {
+           patient=patientRepository.findById(emailId).get();
+           return patient;
+       }
+       else {
+           throw new PatientNotFoundException("Patient Not Found");
+       }
+
     }
 
     @Override
@@ -104,6 +114,14 @@ public class PatientServiceImpl implements PatientService{
 
     }
 
+    @Override
+    public List<PatientAppointment> getAllAppointments(String emailId)
+    {
+        Patient patient=patientRepository.findById(emailId).get();
+        List<PatientAppointment> patientAppointmentList=patient.getPatientAppointmentList();
+        return  patientAppointmentList;
+    }
+
 
     @Override
     public String sendJson(Patient patient) {
@@ -118,7 +136,7 @@ public class PatientServiceImpl implements PatientService{
     public void consumeJson(@Payload BookAppointment bookAppointment)
     {
         System.out.println("Consumed appointment"  +bookAppointment.toString());
-        PatientAppointment patientAppointment=new PatientAppointment(bookAppointment.getAppointmentId(),bookAppointment.getDoctor(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot(),bookAppointment.getKey());
+        PatientAppointment patientAppointment=new PatientAppointment(bookAppointment.getAppointmentId(),bookAppointment.getDoctor(),bookAppointment.getAppointmentDate(),bookAppointment.getSlot(),bookAppointment.getKey(),bookAppointment.getAppointmentTime());
         String emailId=bookAppointment.getPatient().getEmailId();
         updatePatientAppointment(patientAppointment,emailId);
 

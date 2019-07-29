@@ -19,8 +19,12 @@ export class PatientdashboardService {
     })
   };
 
-getAllAppointments() {
-  return this.http.get('http://localhost:3000/patientAppointmentDetails', this.httpOptions);
+// getAllAppointments() {
+//   return this.http.get('http://localhost:3000/patientAppointmentDetails', this.httpOptions);
+// }
+getAllAppointments(emailId:string)
+{
+  return this.http.get("http://localhost:8080/api/v1/patients1/"+emailId,this.httpOptions);
 }
 
 getPatientDetails(emailId:String){

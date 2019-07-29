@@ -1,6 +1,6 @@
 export class Patient{
 
-    name:String;
+    name:string;
     dateOfBirth:String;
     gender:String;
     phone:String;
