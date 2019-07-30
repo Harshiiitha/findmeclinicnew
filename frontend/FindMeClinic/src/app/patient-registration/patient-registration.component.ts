@@ -20,10 +20,18 @@ export class PatientregistrationComponent implements OnInit {
 
  patient:Patient=new Patient();
   patientData: any;
+  patientName:string;
+    patientDateOfBirth:string;
+    patientEmail:string;
+    patientPhone:string;
  constructor(private registration:PatientRegistrationService,private formBuilder:FormBuilder,private activatedRoute:ActivatedRoute,
   private patientEditProfile:PatientdashboardService,private router:Router) { }
 
  ngOnInit() {
+  this.patientName=sessionStorage.getItem('patientName');
+  this.patientDateOfBirth=sessionStorage.getItem('dateOfBirth');
+  this.patientEmail=sessionStorage.getItem('email');
+  this.patientPhone=sessionStorage.getItem('mobile');
   this.validation();
  
  
@@ -33,11 +41,11 @@ export class PatientregistrationComponent implements OnInit {
  validation()
  {
   this.registerForm = this.formBuilder.group({
-    firstName: ['', Validators.required],
-    date: ['', Validators.required],
-    phone: ['',[Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
+    firstName: [this.patientName, Validators.required],
+    date: [this.patientDateOfBirth, Validators.required],
+    phone: [this.patientPhone,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
     gender: ['', Validators.required],
-    email: ['',[Validators.required, Validators.email]],
+    email: [this.patientEmail,[Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
     
 }, );

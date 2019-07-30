@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../Patient';
 import { BookAppointment } from '../bookappointment';
@@ -38,6 +38,10 @@ export class ConfirmbookingComponent implements OnInit {
     evening:string[];
     bookAppointment=new BookAppointment();
     appointmentId1:number;
+    patientName:string;
+    patientDateOfBirth:string;
+    patientEmail:string;
+    patientPhone:string;
    
 
     constructor(private formBuilder: FormBuilder,private route:ActivatedRoute,private appointment:AppointmentService,public dialog: MatDialog,private schedulerService:SchedulerService) {
@@ -60,13 +64,24 @@ export class ConfirmbookingComponent implements OnInit {
       this.morning=["10.00 AM","10.15 AM","10.30 AM","10.45 AM","11.00 AM","11.15 AM","11.30 AM","11.45 AM","12.00 AM","12.15 AM","12.30 AM","12.45 AM"];
   this.afternoon=["2.00 PM","2.15 PM","2.30 PM","2.45 PM","3.00 PM","3.15 PM","3.30 PM","3.45 PM","4.00 PM","4.15 PM","4.30 PM","4.45 PM"];
   this.evening=["6.00 PM","6.15 PM","6.30 PM","6.45 PM","7.00 PM","7.15 PM","7.30 PM","7.45 PM","8.00 PM","8.15 PM","8.30 PM","8.45 PM"];
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            date: ['', Validators.required],
-            phone: ['',[Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
-            gender: ['', Validators.required],
-            email: ['',[Validators.required, Validators.email]],
-        });
+  this.patientName=sessionStorage.getItem('patientName');
+  this.patientDateOfBirth=sessionStorage.getItem('dateOfBirth');
+  this.patientEmail=sessionStorage.getItem('email');
+  this.patientPhone=sessionStorage.getItem('mobile');  
+  console.log(this.patientName+this.patientDateOfBirth+this.patientEmail+this.patientPhone);   
+ this.validation();
+       
+      
+    }
+    validation()
+    {
+      this.registerForm = this.formBuilder.group({
+        firstName: [sessionStorage.getItem('patientName'),[ Validators.required]],
+        date: [sessionStorage.getItem('dateOfBirth'), [Validators.required]],
+        phone: [sessionStorage.getItem('mobile'),[Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
+        gender: ['', [Validators.required]],
+        email: [sessionStorage.getItem('email'),[Validators.required, Validators.email]],
+    });
     }
 
     register()
@@ -75,7 +90,6 @@ export class ConfirmbookingComponent implements OnInit {
        this.patient.phone=this.registerForm.controls.phone.value;
        this.patient.emailId=this.registerForm.controls.email.value;
        this.patient.dateOfBirth=this.registerForm.controls.date.value;
-     
       console.log(this.patient);
       
        
@@ -116,7 +130,13 @@ export class ConfirmbookingComponent implements OnInit {
           sessionStorage.setItem('appointmentid',this.appointmentId+"");
           sessionStorage.setItem('key',this.key);
           var url=location.href;
-          localStorage.setItem("url",url);
+          localStorage.setItem('url',url);
+          sessionStorage.setItem('patientName',this.patient.name);
+          sessionStorage.setItem('dateOfBirth',this.patient.dateOfBirth);
+          sessionStorage.setItem('gender',this.patient.gender);
+          sessionStorage.setItem('mobile',this.patient.phone);
+          sessionStorage.setItem('email',this.patient.emailId);
+          
 
           this.appointment.checkPatient(this.bookAppointment.patient.emailId).subscribe(data=>
           {

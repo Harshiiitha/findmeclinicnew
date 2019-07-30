@@ -26,6 +26,7 @@ public class Doctor {
     private String specialization;
     private Date practiceStartedDate;
     private String clinicName;
+    private String clinicImage;
     private Address address;
     private String password;
     private List<DoctorAppointment> doctorAppointmentList;

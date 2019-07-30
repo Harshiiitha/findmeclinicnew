@@ -121,7 +121,7 @@ saveSpecialization(){
 
 
  saveClinic() {
-
+   this.doctor.clinicName=this.thirdFormGroup.controls.ClinicNameCtrl.value;
    this.address.state = this.thirdFormGroup.controls.StateCtrl.value;
    this.doctor.phone = this.thirdFormGroup.controls.MobileCtrl.value;
    this.address.city = this.thirdFormGroup.controls.CityCtrl.value;

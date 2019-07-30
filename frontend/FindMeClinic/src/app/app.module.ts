@@ -26,7 +26,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarModule } from 'angular-bootstrap-md';
 import { DoctordashboardComponent } from './doctordashboard/doctordashboard.component';
-import { DoctorprofileComponent} from './doctorprofile/doctorprofile.component';
+import { DoctorprofileComponent} from './doctorprofile/doctorprofile/doctorprofile.component';
 import { DoctorappointmentsComponent } from './doctorappointments/doctorappointments.component';
 import { DoctortimingsComponent } from './doctortimings/doctortimings.component';
 

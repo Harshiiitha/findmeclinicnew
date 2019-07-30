@@ -27,6 +27,7 @@ public class Doctor {
     private String specialization;
     private Date practiceStartedDate;
     private String clinicName;
+    private String clinicImage;
     private Address address;
     @Transient
     private String password;

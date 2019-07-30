@@ -12,8 +12,8 @@ export class DoctorAppointmentsService {
       
     })
   };
-  getDoctorAppointmentDetails(){
-    return this.http.get('http://localhost:3000/doctorAppointmentDetails', this.httpOptions);
+  getAllAppointments(emailId:string){
+    return this.http.get("http://localhost:8082/api/v1/doctors2/"+emailId,this.httpOptions);
   }
 
 

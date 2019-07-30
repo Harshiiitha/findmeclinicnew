@@ -2,39 +2,42 @@ mat-expansion-panel {
   width: 90%;
   margin:auto;
   margin-top:3%;
-  background:    rgb(238, 236, 238);
-}
-
-.title{
-  font-weight: 300;
-}
+  /* background:    rgb(238, 236, 238); */
+  background: url("../../assets/images/18.jpeg") no-repeat center top / cover;
+ }
+ .title{
+  font-weight: 500;
+  font-size:17px;
+  color:white;
+ }
   .example-card {
     display: flex;
     flex-direction: column;
     margin: auto;
-
-
+    background: url("../../assets/images/18.jpeg") no-repeat center top / cover;
   }
-
   .upcomingDataCard{
       /* max-width: 500px; */
-      background:rgb(198, 212, 216);
+      background: url("../../assets/images/21.jpg") no-repeat center top / cover;
   }
   .previousDataCard{
-    background:rgb(198, 212, 216);
+    background: url("../../assets/images/21.jpg") no-repeat center top / cover;
   }
-
-
-
+ p{
+  color: rgb(3, 0, 8);
+  font-size:14px;
+  font-weight:400;
+ }
   .cardList {
+  padding-left:30px;
+  padding-top:30px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-     max-width: 1200px;
+     max-width: 1180px;
      margin:auto;
      margin-top:2%;
-
   }
   /* Column Gap */
   .cardList > * {
@@ -48,8 +51,7 @@ mat-expansion-panel {
     flex: 0 1 calc(33.3% - 32px);
   }
   /* medium size viewport */
-
-@media screen and (max-width: 959px) {
+ @media screen and (max-width: 959px) {
     /* Column Gap */
     .cardList > *:not(:last-child) {
       margin-right: 32px;
@@ -60,8 +62,7 @@ mat-expansion-panel {
     }
   }
   /* small size viewport */
-
-@media screen and (max-width: 599px) {
+ @media screen and (max-width: 599px) {
     .cardList {
       display: flex;
       flex-direction: column;
@@ -72,3 +73,4 @@ mat-expansion-panel {
       margin-bottom: 32px;
     }
   }
+ 

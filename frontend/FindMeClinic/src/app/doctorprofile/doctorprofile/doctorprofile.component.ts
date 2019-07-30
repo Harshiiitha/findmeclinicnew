@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { OnChanges, DoCheck } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Doctor } from 'src/app/doctor';
 import { DoctorprofileService } from 'src/app/DoctorprofileService';
-
 @Component({
  selector: 'app-doctorprofile',
  templateUrl: './doctorprofile.component.html',

@@ -30,6 +30,12 @@ export class ConfirmationDialogComponent implements OnInit {
  
 
   ngOnInit() {
+    localStorage.removeItem('url');
+    sessionStorage.removeItem('patientName');
+    sessionStorage.removeItem('dateOfBirth');
+    sessionStorage.removeItem('gender');
+    sessionStorage.removeItem('mobile');
+    sessionStorage.removeItem('email');
     this.emailId=sessionStorage.getItem('username');
    this.confirm();
    
